@@ -1,20 +1,29 @@
 console.log('Starting app.');
 
 const fs = require('fs');
-const os = require('os');
 const _ = require('lodash');
+
 const notes = require('./notes');
 
-console.log(_.isString(2));
-console.log(_.isString('test'));
-console.log(_.uniq([1, 2, 3, 3, 2, 1]));
+console.log(process.argv);
 
-console.log(notes.add(1, 2));
+let command = process.argv[2];
+console.log(`Command: ${command}`);
 
-var user = os.userInfo();
-
-fs.appendFile('greetings.txt', `Hello ${user.username}!`, err => {
-    if (err) {
-        console.log('Unable to write to file.');
-    }
-});
+switch(command) {
+    case 'add':
+        console.log('Adding new note.');
+        break;
+    case 'list':
+        console.log('Listing all notes.');
+        break;
+    case 'read':
+        console.log('Reading a note.');
+        break;
+    case 'remove':
+        console.log('Removing note.');
+        break;
+    default:
+        console.log('Command not recognized.');
+        break;
+}
