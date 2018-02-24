@@ -9,6 +9,7 @@
   "author": "Rodrigo Zanetta",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.5",
+    "yargs": "^4.7.1"
   }
 }
