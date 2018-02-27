@@ -13,7 +13,7 @@ console.log(`Command: ${command}`);
 
 switch(command) {
     case 'add':
-        let note = notes.addNote(argv.title, argv.body);
+        var note = notes.addNote(argv.title, argv.body);
         if (note) {
             console.log('Note created.');
             console.log('--');
@@ -27,7 +27,15 @@ switch(command) {
         notes.getAll();
         break;
     case 'read':
-        notes.getNote(argv.title);
+        var note = notes.getNote(argv.title);
+        if (note) {
+            console.log('Note read.');
+            console.log('--');
+            console.log('Title:', note.title);
+            console.log('Body:', note.body);
+        } else {
+            console.log('Note not found.');
+        }
         break;
     case 'remove':
         let noteRemoved = notes.removeNote(argv.title);
