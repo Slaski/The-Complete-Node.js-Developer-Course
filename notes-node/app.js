@@ -11,14 +11,18 @@ const argv = yargs.argv;
 let command = process.argv[2];
 console.log(`Command: ${command}`);
 
+let logNote = (note) => {
+    console.log('--');
+    console.log('Title:', note.title);
+    console.log('Body:', note.body);
+}
+
 switch(command) {
     case 'add':
         var note = notes.addNote(argv.title, argv.body);
         if (note) {
             console.log('Note created.');
-            console.log('--');
-            console.log('Title:', note.title);
-            console.log('Body:', note.body);
+            logNote(note);
         } else {
             console.log('Note title already exists.');
         }
@@ -30,9 +34,7 @@ switch(command) {
         var note = notes.getNote(argv.title);
         if (note) {
             console.log('Note read.');
-            console.log('--');
-            console.log('Title:', note.title);
-            console.log('Body:', note.body);
+            logNote(note);
         } else {
             console.log('Note not found.');
         }
