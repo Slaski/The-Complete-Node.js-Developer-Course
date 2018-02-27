@@ -30,7 +30,9 @@ switch(command) {
         notes.getNote(argv.title);
         break;
     case 'remove':
-        notes.removeNote(argv.title);
+        let noteRemoved = notes.removeNote(argv.title);
+        let message = noteRemoved ? "Note was successfully removed." : "Note not found.";
+        console.log(message);
         break;
     default:
         console.log('Command not recognized.');
