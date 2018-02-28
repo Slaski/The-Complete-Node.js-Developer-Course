@@ -15,17 +15,14 @@ const argv = yargs
     .alias('help', 'h')
     .argv;
 
-geocode.geocodeAddress(argv.address, (errorMessage, results) => {
-    if (errorMessage) {
+geocode.geocodeAddress(argv.address)
+    .then(result => {
+        console.log(result.address);
+        return forecast.getForecast(result.latitude, result.longitude);
+    })
+    .then(result => {
+        console.log(`It's currently ${result.temperature}. It feels like ${result.apparentTemperature}.`);
+    })
+    .catch(errorMessage => {
         console.log(errorMessage);
-    } else {
-        console.log(results.address);
-        forecast.getForecast(results.latitude, results.longitude, (errorMessage, results) => {
-            if (errorMessage) {
-                console.log(errorMessage);
-            } else {
-                console.log(`It's currently ${results.temperature}. It feels like ${results.apparentTemperature}.`);
-            }
-        });
-    }
-});
+    });
