@@ -22,10 +22,6 @@ app.use((request, response, next) => {
     next();
 });
 
-app.use((request, response, next) => {
-    response.render('maintenance.hbs');
-});
-
 app.use(express.static(__dirname + '/public'));
 
 hbs.registerHelper('getCurrentYear', () => {
@@ -52,6 +48,12 @@ app.get('/about', (request, response) => {
 app.get('/bad', (request, response) => {
     response.send({
         errorMessage: 'Unable to handle request.'
+    });
+});
+
+app.get('/projects', (request, response) => {
+    response.render('projects.hbs', {
+        pageTitle: 'Projects'
     });
 });
 
