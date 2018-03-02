@@ -11,3 +11,11 @@ it('should square a number', () => {
     var result = utils.square(3);
     expect(result).toBe(9).toBeA('number');
 });
+
+it('should verify first and last names are set', () => {
+    var result = utils.setName({}, 'Rodrigo Zanetta');
+    expect(result).toInclude({
+        firstName: 'Rodrigo',
+        lastName: 'Zanetta'
+    });
+});
