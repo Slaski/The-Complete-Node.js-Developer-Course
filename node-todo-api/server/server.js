@@ -8,6 +8,14 @@ const {User} = require('./models/user');
 var app = express();
 app.use(bodyParser.json());
 
+app.get('/todos', (req, res) => {
+    Todo.find().then((todos) => {
+        res.send({todos});
+    }, (err) => {
+        res.status(400).send(err);
+    });
+});
+
 app.post('/todos', (req, res) => {
     var todo = new Todo({
         text: req.body.text
