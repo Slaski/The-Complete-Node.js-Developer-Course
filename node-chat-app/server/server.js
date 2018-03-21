@@ -20,10 +20,15 @@ io.on('connection', socket => {
     socket.on('disconnect', () => {
         console.log('User was disconnected');
     });
+
+    socket.on('createMessage', (message) => {
+        console.log(message);
+        socket.emit('newMessage', {...message, createdAt: new Date().getTime()});
+    });
 });
 
 server.listen(port, () => {
     console.log(`Started listening on port ${port}.`);
-})
+});
 
 module.exports = {app};
